@@ -186,11 +186,18 @@ GeoscapeState::GeoscapeState() : _pause(false), _zoomInEffectDone(false), _zoomO
 	_txtHourSep = new Text(4, 16, screenWidth-41, screenHeight/2-26);
 	_txtMin = new Text(20, 16, screenWidth-37, screenHeight/2-26);
 	_txtMinSep = new Text(4, 16, screenWidth-17, screenHeight/2-26);
-	_txtSec = new Text(11, 8, screenWidth-13, screenHeight/2-20);
-	_txtWeekday = new Text(59, 8, screenWidth-61, screenHeight/2-13);
-	_txtDay = new Text(29, 8, screenWidth-61, screenHeight/2-6);
-	_txtMonth = new Text(29, 8, screenWidth-32, screenHeight/2-6);
-	_txtYear = new Text(59, 8, screenWidth-61, screenHeight/2+1);
+	// Sec aligned with new (small) Hour top — was y=-20 when Hour was big.
+	_txtSec = new Text(11, 8, screenWidth-13, screenHeight/2-26);
+	// Weekday h=12 to fit FontGeoSmall cell 12 (Geoscape menu also uses
+	// this font; cell 10 broke menu glyphs).
+	_txtWeekday = new Text(59, 12, screenWidth-61, screenHeight/2-15);
+	// Month 月 + Day 日 + Year 1999 all on same y=-4 row (user request).
+	// Order: 月 first (left), 日 second, 1999 third — natural Chinese date.
+	// zh-TW combined date widget — Year shows "1999 / 1 / 1" spanning full row.
+	// Month/Day widgets exist for save compat but render empty text.
+	_txtMonth = new Text(20, 12, screenWidth-61, screenHeight/2-4);
+	_txtDay   = new Text(20, 12, screenWidth-37, screenHeight/2-4);
+	_txtYear  = new Text(59, 12, screenWidth-61, screenHeight/2-4);
 	_txtFunds = new Text(59, 8, screenWidth-61, screenHeight/2-27);
 
 	int slackingIndicatorOffset = _game->getMod()->getInterface("geoscape")->getElement("slackingIndicator")->custom;
@@ -391,16 +398,23 @@ GeoscapeState::GeoscapeState() : _pause(false), _zoomInEffectDone(false), _zoomO
 	_txtFunds->setAlign(ALIGN_CENTER);
 	_txtFunds->setVisible(Options::showFundsOnGeoscape);
 
-	_txtHour->setBig();
+	// CJK fix: shrink 12:00 to FONT_SMALL so Hour widget ink ends at y=-17
+	// (instead of -10 with FONT_BIG), giving Weekday CJK its 12-px row.
+	_txtHour->setSmall();
 	_txtHour->setAlign(ALIGN_RIGHT);
 
-	_txtHourSep->setBig();
+	_txtHourSep->setSmall();
 	_txtHourSep->setText(":");
 
-	_txtMin->setBig();
+	_txtMin->setSmall();
+	_txtMin->setAlign(ALIGN_LEFT);   // 12:00:00 cluster — Min hugs left right after HourSep
 
-	_txtMinSep->setBig();
+	_txtMinSep->setSmall();
 	_txtMinSep->setText(":");
+	// MinSep + Sec shifted left to abut Min (was -17 / -13; now -21 / -17).
+	_txtMinSep->setX(screenWidth - 21);
+	_txtSec->setX(screenWidth - 17);
+	_txtSec->setAlign(ALIGN_LEFT);
 
 	_txtWeekday->setAlign(ALIGN_CENTER);
 
@@ -824,16 +838,16 @@ void GeoscapeState::timeDisplay()
 	ss3 << _game->getSavedGame()->getTime()->getHour();
 	_txtHour->setText(ss3.str());
 
-	std::ostringstream ss4;
-	ss4 << _game->getSavedGame()->getTime()->getDayString(_game->getLanguage());
-	_txtDay->setText(ss4.str());
-
 	_txtWeekday->setText(tr(_game->getSavedGame()->getTime()->getWeekdayString()));
 
-	_txtMonth->setText(tr(_game->getSavedGame()->getTime()->getMonthString()));
-
+	// zh-TW UX: collapse Year/Month/Day into single ISO-style "1999 / 1 / 1"
+	// in the Year widget, hide Day and Month widgets.
+	_txtDay->setText("");
+	_txtMonth->setText("");
 	std::ostringstream ss5;
-	ss5 << _game->getSavedGame()->getTime()->getYear();
+	ss5 << _game->getSavedGame()->getTime()->getYear() << " / "
+	    << _game->getSavedGame()->getTime()->getMonth() << " / "
+	    << _game->getSavedGame()->getTime()->getDay();
 	_txtYear->setText(ss5.str());
 }
 

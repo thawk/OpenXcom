@@ -79,10 +79,11 @@ void ManufactureInfoState::buildUi()
 	_btnStop = new TextButton(136, 16, 16, 155);
 	_btnSell = new ToggleTextButton(60, 16, 244, 61);
 	_btnFallback = new ToggleTextButton(72, 16, 168, 61);
-	_txtAvailableEngineer = new Text(160, 9, 16, 50);
-	_txtAvailableSpace = new Text(160, 9, 16, 60);
+	// zh-TW CJK 12px fit: h 9→13, y -2 (50→48, 60→58); _txtAllocatedEngineer y=80 has 11px gap.
+	_txtAvailableEngineer = new Text(160, 13, 16, 48);
+	_txtAvailableSpace = new Text(160, 13, 16, 58);
 	_txtHoursPerUnit = new Text(150, 9, 16, 70);
-	_txtMonthlyProfit = new Text(160, 9, 168, 50);
+	_txtMonthlyProfit = new Text(160, 13, 168, 48);
 	_txtAllocatedEngineer = new Text(112, 32, 16, 80);
 	_txtUnitToProduce = new Text(112, 48, 168, 64);
 	_txtEngineerUp = new Text(90, 9, 40, 118);

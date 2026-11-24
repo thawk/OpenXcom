@@ -53,16 +53,19 @@ ManufactureState::ManufactureState(Base *base) : _base(base)
 	_btnNew = new TextButton(148, 16, 8, 176);
 	_btnOk = new TextButton(148, 16, 164, 176);
 	_txtTitle = new Text(310, 17, 5, 8);
-	_txtAvailable = new Text(150, 9, 8, 24);
-	_txtAllocated = new Text(150, 9, 160, 24);
-	_txtSpace = new Text(150, 9, 8, 34);
-	_txtFunds = new Text(150, 9, 160, 34);
-	_txtItem = new Text(80, 9, 10, 52);
-	_txtEngineers = new Text(56, 18, 112, 44);
-	_txtProduced = new Text(56, 18, 168, 44);
-	_txtCost = new Text(44, 27, 222, 44);
-	_txtTimeLeft = new Text(60, 27, 260, 44);
-	_lstManufacture = new TextList(288, 88, 8, 80);
+	// zh-TW CJK 12px fit: row1/row2 h 9→13, y -2; row3 multi-line widgets
+	// shifted down 2px (y 44→46) to avoid row2 (bottom=45) overlap; _txtItem
+	// y 52→54 keeps gap below row2; _lstManufacture y 80→82 keeps gap below row3.
+	_txtAvailable = new Text(150, 13, 8, 22);
+	_txtAllocated = new Text(150, 13, 160, 22);
+	_txtSpace = new Text(150, 13, 8, 32);
+	_txtFunds = new Text(150, 13, 160, 32);
+	_txtItem = new Text(80, 13, 10, 54);
+	_txtEngineers = new Text(56, 18, 112, 46);
+	_txtProduced = new Text(56, 18, 168, 46);
+	_txtCost = new Text(44, 27, 222, 46);
+	_txtTimeLeft = new Text(60, 27, 260, 46);
+	_lstManufacture = new TextList(288, 86, 8, 82);
 
 	// Set palette
 	setInterface("manufactureMenu");

@@ -56,49 +56,51 @@ BaseInfoState::BaseInfoState(Base *base, BasescapeState *state) : _base(base), _
 	_btnMonthlyCosts = new TextButton(92, 14, 218, 180);
 	_edtBase = new TextEdit(this, 127, 16, 8, 8);
 
-	_txtPersonnel = new Text(300, 9, 8, 30);
-	_txtSoldiers = new Text(114, 9, 8, 41);
-	_numSoldiers = new Text(40, 9, 126, 41);
-	_barSoldiers = new Bar(150, 5, 166, 43);
-	_txtEngineers = new Text(114, 9, 8, 51);
-	_numEngineers = new Text(40, 9, 126, 51);
-	_barEngineers = new Bar(150, 5, 166, 53);
-	_txtScientists = new Text(114, 9, 8, 61);
-	_numScientists = new Text(40, 9, 126, 61);
-	_barScientists = new Bar(150, 5, 166, 63);
+	// CHT v2.22 T1: h 9->11 (sweet spot per audit §8: row distance = 11 fills exactly),
+	// all y -1 to preserve top-edge alignment & visual center; _bar y also -1 keeping +2 offset.
+	_txtPersonnel = new Text(300, 11, 8, 29);
+	_txtSoldiers = new Text(114, 11, 8, 40);
+	_numSoldiers = new Text(40, 11, 126, 40);
+	_barSoldiers = new Bar(150, 5, 166, 42);
+	_txtEngineers = new Text(114, 11, 8, 50);
+	_numEngineers = new Text(40, 11, 126, 50);
+	_barEngineers = new Bar(150, 5, 166, 52);
+	_txtScientists = new Text(114, 11, 8, 60);
+	_numScientists = new Text(40, 11, 126, 60);
+	_barScientists = new Bar(150, 5, 166, 62);
 
-	_txtSpace = new Text(300, 9, 8, 72);
-	_txtQuarters = new Text(114, 9, 8, 83);
-	_numQuarters = new Text(40, 9, 126, 83);
-	_barQuarters = new Bar(150, 5, 166, 85);
-	_txtStores = new Text(114, 9, 8, 93);
-	_numStores = new Text(40, 9, 126, 93);
-	_barStores = new Bar(150, 5, 166, 95);
-	_txtLaboratories = new Text(114, 9, 8, 103);
-	_numLaboratories = new Text(40, 9, 126, 103);
-	_barLaboratories = new Bar(150, 5, 166, 105);
-	_txtWorkshops = new Text(114, 9, 8, 113);
-	_numWorkshops = new Text(40, 9, 126, 113);
-	_barWorkshops = new Bar(150, 5, 166, 115);
+	_txtSpace = new Text(300, 11, 8, 71);
+	_txtQuarters = new Text(114, 11, 8, 82);
+	_numQuarters = new Text(40, 11, 126, 82);
+	_barQuarters = new Bar(150, 5, 166, 84);
+	_txtStores = new Text(114, 11, 8, 92);
+	_numStores = new Text(40, 11, 126, 92);
+	_barStores = new Bar(150, 5, 166, 94);
+	_txtLaboratories = new Text(114, 11, 8, 102);
+	_numLaboratories = new Text(40, 11, 126, 102);
+	_barLaboratories = new Bar(150, 5, 166, 104);
+	_txtWorkshops = new Text(114, 11, 8, 112);
+	_numWorkshops = new Text(40, 11, 126, 112);
+	_barWorkshops = new Bar(150, 5, 166, 114);
 	if (Options::storageLimitsEnforced)
 	{
-		_txtContainment = new Text(114, 9, 8, 123);
-		_numContainment = new Text(40, 9, 126, 123);
-		_barContainment = new Bar(150, 5, 166, 125);
+		_txtContainment = new Text(114, 11, 8, 122);
+		_numContainment = new Text(40, 11, 126, 122);
+		_barContainment = new Bar(150, 5, 166, 124);
 	}
-	_txtHangars = new Text(114, 9, 8, Options::storageLimitsEnforced ? 133 : 123);
-	_numHangars = new Text(40, 9, 126, Options::storageLimitsEnforced ? 133 : 123);
-	_barHangars = new Bar(150, 5, 166, Options::storageLimitsEnforced ? 135 : 125);
+	_txtHangars = new Text(114, 11, 8, Options::storageLimitsEnforced ? 132 : 122);
+	_numHangars = new Text(40, 11, 126, Options::storageLimitsEnforced ? 132 : 122);
+	_barHangars = new Bar(150, 5, 166, Options::storageLimitsEnforced ? 134 : 124);
 
-	_txtDefense = new Text(114, 9, 8, Options::storageLimitsEnforced ? 147 : 138);
-	_numDefense = new Text(40, 9, 126, Options::storageLimitsEnforced ? 147 : 138);
-	_barDefense = new Bar(150, 5, 166, Options::storageLimitsEnforced ? 149 : 140);
-	_txtShortRange = new Text(114, 9, 8, Options::storageLimitsEnforced ? 157 : 153);
-	_numShortRange = new Text(40, 9, 126, Options::storageLimitsEnforced ? 157 : 153);
-	_barShortRange = new Bar(150, 5, 166, Options::storageLimitsEnforced ? 159 : 155);
-	_txtLongRange = new Text(114, 9, 8, Options::storageLimitsEnforced ? 167 : 163);
-	_numLongRange = new Text(40, 9, 126, Options::storageLimitsEnforced ? 167 : 163);
-	_barLongRange = new Bar(150, 5, 166, Options::storageLimitsEnforced ? 169 : 165);
+	_txtDefense = new Text(114, 11, 8, Options::storageLimitsEnforced ? 146 : 137);
+	_numDefense = new Text(40, 11, 126, Options::storageLimitsEnforced ? 146 : 137);
+	_barDefense = new Bar(150, 5, 166, Options::storageLimitsEnforced ? 148 : 139);
+	_txtShortRange = new Text(114, 11, 8, Options::storageLimitsEnforced ? 156 : 152);
+	_numShortRange = new Text(40, 11, 126, Options::storageLimitsEnforced ? 156 : 152);
+	_barShortRange = new Bar(150, 5, 166, Options::storageLimitsEnforced ? 158 : 154);
+	_txtLongRange = new Text(114, 11, 8, Options::storageLimitsEnforced ? 166 : 162);
+	_numLongRange = new Text(40, 11, 126, Options::storageLimitsEnforced ? 166 : 162);
+	_barLongRange = new Bar(150, 5, 166, Options::storageLimitsEnforced ? 168 : 164);
 
 	// Set palette
 	setInterface("baseInfo");

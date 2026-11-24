@@ -51,13 +51,16 @@ ResearchState::ResearchState(Base *base) : _base(base)
 	_btnNew = new TextButton(148, 16, 8, 176);
 	_btnOk = new TextButton(148, 16, 164, 176);
 	_txtTitle = new Text(310, 17, 5, 8);
-	_txtAvailable = new Text(150, 9, 10, 24);
-	_txtAllocated = new Text(150, 9, 160, 24);
-	_txtSpace = new Text(300, 9, 10, 34);
-	_txtProject = new Text(110, 17, 10, 44);
-	_txtScientists = new Text(106, 17, 120, 44);
-	_txtProgress = new Text(84, 9, 226, 44);
-	_lstResearch = new TextList(288, 112, 8, 62);
+	// zh-TW CJK 12px fit: row1/row2 h 9→13, y -2; row3 (_txtProject/Scientists/
+	// Progress) shifted down 2px (44→46) to avoid row2 bottom (32+13=45) overlap;
+	// _txtProgress also h 9→13 for CJK 「進度」; _lstResearch y 62→64, h 112→110.
+	_txtAvailable = new Text(150, 13, 10, 22);
+	_txtAllocated = new Text(150, 13, 160, 22);
+	_txtSpace = new Text(300, 13, 10, 32);
+	_txtProject = new Text(110, 17, 10, 46);
+	_txtScientists = new Text(106, 17, 120, 46);
+	_txtProgress = new Text(84, 13, 226, 46);
+	_lstResearch = new TextList(288, 110, 8, 64);
 
 	// Set palette
 	setInterface("researchMenu");

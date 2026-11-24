@@ -100,9 +100,11 @@ PurchaseState::PurchaseState(Base *base, CannotReequipState *parent) : _base(bas
 	_btnOk = new TextButton(148, 16, 8, 176);
 	_btnCancel = new TextButton(148, 16, 164, 176);
 	_txtTitle = new Text(310, 17, 5, 8);
-	_txtFunds = new Text(150, 9, 10, 24);
-	_txtPurchases = new Text(150, 9, 160, 24);
-	_txtSpaceUsed = new Text(150, 9, 160, 34);
+	// zh-TW CJK 12px fit: h 9→11, y -1 (compromise — full 13 would collide with
+	// _cbxCategory y=36 and _txtCost y=44). 1px overshoot accepted, recovers most CJK底.
+	_txtFunds = new Text(150, 11, 10, 23);
+	_txtPurchases = new Text(150, 11, 160, 23);
+	_txtSpaceUsed = new Text(150, 11, 160, 33);
 	_txtCost = new Text(102, 9, 152, 44);
 	_txtQuantity = new Text(60, 9, 256, 44);
 	_cbxCategory = new ComboBox(this, 120, 16, 10, 36);

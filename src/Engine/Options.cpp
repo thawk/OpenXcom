@@ -114,12 +114,12 @@ void createOptionsOXC()
 	_info.push_back(OptionInfo(OPTION_OXC, "traceAI", &traceAI, false));
 	_info.push_back(OptionInfo(OPTION_OXC, "verboseLogging", &verboseLogging, false));
 	_info.push_back(OptionInfo(OPTION_OXC, "StereoSound", &StereoSound, true));
-	//_info.push_back(OptionInfo(OPTION_OXC, "baseXResolution", &baseXResolution, Screen::ORIGINAL_WIDTH));
-	//_info.push_back(OptionInfo(OPTION_OXC, "baseYResolution", &baseYResolution, Screen::ORIGINAL_HEIGHT));
-	//_info.push_back(OptionInfo(OPTION_OXC, "baseXGeoscape", &baseXGeoscape, Screen::ORIGINAL_WIDTH));
-	//_info.push_back(OptionInfo(OPTION_OXC, "baseYGeoscape", &baseYGeoscape, Screen::ORIGINAL_HEIGHT));
-	//_info.push_back(OptionInfo(OPTION_OXC, "baseXBattlescape", &baseXBattlescape, Screen::ORIGINAL_WIDTH));
-	//_info.push_back(OptionInfo(OPTION_OXC, "baseYBattlescape", &baseYBattlescape, Screen::ORIGINAL_HEIGHT));
+	_info.push_back(OptionInfo(OPTION_OXC, "baseXResolution", &baseXResolution, Screen::ORIGINAL_WIDTH));
+	_info.push_back(OptionInfo(OPTION_OXC, "baseYResolution", &baseYResolution, Screen::ORIGINAL_HEIGHT));
+	_info.push_back(OptionInfo(OPTION_OXC, "baseXGeoscape", &baseXGeoscape, Screen::ORIGINAL_WIDTH));
+	_info.push_back(OptionInfo(OPTION_OXC, "baseYGeoscape", &baseYGeoscape, Screen::ORIGINAL_HEIGHT));
+	_info.push_back(OptionInfo(OPTION_OXC, "baseXBattlescape", &baseXBattlescape, Screen::ORIGINAL_WIDTH));
+	_info.push_back(OptionInfo(OPTION_OXC, "baseYBattlescape", &baseYBattlescape, Screen::ORIGINAL_HEIGHT));
 	_info.push_back(OptionInfo(OPTION_OXC, "geoscapeScale", &geoscapeScale, 0));
 	_info.push_back(OptionInfo(OPTION_OXC, "battlescapeScale", &battlescapeScale, 0));
 	_info.push_back(OptionInfo(OPTION_OXC, "useScaleFilter", &useScaleFilter, false));

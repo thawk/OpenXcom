@@ -23,6 +23,8 @@
 #include "../Mod/Mod.h"
 #include "../Engine/LocalizedText.h"
 #include "../Engine/Screen.h"
+#include "../Engine/Surface.h"
+#include "../Engine/FileMap.h"
 #include "../Interface/TextButton.h"
 #include "../Interface/Window.h"
 #include "../Interface/Text.h"

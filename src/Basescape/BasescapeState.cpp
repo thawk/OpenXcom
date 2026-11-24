@@ -75,8 +75,9 @@ BasescapeState::BasescapeState(Base *base, Globe *globe) : _base(base), _globe(g
 	_view = new BaseView(192, 192, 0, 8);
 	_mini = new MiniBaseView(128, 16, 192, 41);
 	_edtBase = new TextEdit(this, 127, 17, 193, 0);
-	_txtLocation = new Text(126, 9, 194, 16);
-	_txtFunds = new Text(126, 9, 194, 24);
+	// zh-TW CJK 12px fit: h 9→13, y -2 to recenter; below _btnNewBase y=58 has 23px gap.
+	_txtLocation = new Text(126, 13, 194, 14);
+	_txtFunds = new Text(126, 13, 194, 22);
 	_btnNewBase = new TextButton(128, 12, 192, 58);
 	_btnBaseInfo = new TextButton(128, 12, 192, 71);
 	_btnSoldiers = new TextButton(128, 12, 192, 84);

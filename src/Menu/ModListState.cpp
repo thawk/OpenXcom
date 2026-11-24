@@ -36,6 +36,23 @@ namespace OpenXcom
 {
 
 /**
+ * Returns the localized display name for a mod, falling back to the
+ * metadata.yml literal "name" if no translation key STR_MOD_<id> exists.
+ * Used by the mod list / master combo box so zh-TW players see Chinese mod names.
+ */
+static std::string _localizedModName(Game *game, const ModInfo *modInfo)
+{
+	std::string key = "STR_MOD_" + modInfo->getId();
+	std::string translated = game->getLanguage()->getString(key);
+	// Language::getString returns the key itself when not found.
+	if (translated == key || translated.empty())
+	{
+		return modInfo->getName();
+	}
+	return translated;
+}
+
+/**
  * Initializes all the elements in the Mod Options window.
  * @param game Pointer to the core game.
  */
@@ -114,7 +131,7 @@ ModListState::ModListState() : _curMasterIdx(0)
 			++_curMasterIdx;
 		}
 		_masters.push_back(modInfo);
-		masterNames.push_back(modInfo->getName());
+		masterNames.push_back(_localizedModName(_game, modInfo));
 	}
 
 	_cbxMasters->setOptions(masterNames);
@@ -232,7 +249,7 @@ void ModListState::lstModsRefresh(size_t scrollLoc)
 			continue;
 		}
 
-		std::string modName = modInfo.getName();
+		std::string modName = _localizedModName(_game, &modInfo);
 		_lstMods->addRow(3, modName.c_str(), "", (pair.second ? tr("STR_YES").c_str() : tr("STR_NO").c_str()));
 		_mods.push_back(pair);
 	}

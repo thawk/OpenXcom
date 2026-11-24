@@ -58,13 +58,15 @@ MonthlyReportState::MonthlyReportState(Globe *globe) : _gameOver(0), _ratingTota
 	_btnOk = new TextButton(50, 12, 135, 180);
 	_btnBigOk = new TextButton(120, 18, 100, 174);
 	_txtTitle = new Text(300, 17, 16, 8);
-	_txtMonth = new Text(130, 9, 16, 24);
-	_txtRating = new Text(160, 9, 146, 24);
-	_txtIncome = new Text(300, 9, 16, 32);
-	_txtMaintenance = new Text(130, 9, 16, 40);
-	_txtBalance = new Text(160, 9, 146, 40);
-	_txtBonus = new Text(300, 9, 16, 48);
-	_txtDesc = new Text(280, 124, 16, 56);
+	// CHT v2.22 T2: rows h 9->13, row pitch 8->13. y: 24,32,40,48 -> 24,37,50,63.
+	// _txtDesc shifted y 56->76, h 124->104 (preserves bottom edge 180).
+	_txtMonth = new Text(130, 13, 16, 24);
+	_txtRating = new Text(160, 13, 146, 24);
+	_txtIncome = new Text(300, 13, 16, 37);
+	_txtMaintenance = new Text(130, 13, 16, 50);
+	_txtBalance = new Text(160, 13, 146, 50);
+	_txtBonus = new Text(300, 13, 16, 63);
+	_txtDesc = new Text(280, 104, 16, 76);
 	_txtFailure = new Text(290, 160, 15, 10);
 
 	// Set palette

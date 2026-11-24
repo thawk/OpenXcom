@@ -71,13 +71,14 @@ FundingState::FundingState()
 	_window = new Window(this, 320, 200, 0, 0, POPUP_BOTH);
 	_btnOk = new TextButton(50, 12, 135, 180);
 	_txtTitle = new Text(320, 17, 0, 8);
-	_txtCountry = new Text(100, 9, 32, 30);
-	_txtFunding = new Text(100, 9, 140, 30);
-	_txtChange = new Text(72, 9, 240, 30);
-	_lstCountries = new TextList(260, 136, 32, 40);
-	_sortName = new ArrowButton(ARROW_NONE, 11, 8, 32, 30);
-	_sortFunding = new ArrowButton(ARROW_NONE, 11, 8, 140, 30);
-	_sortChange = new ArrowButton(ARROW_NONE, 11, 8, 240, 30);
+	// zh-TW CJK 12px fit: h 9→13, y 30→28; _lstCountries y 40→44 to avoid header overlap.
+	_txtCountry = new Text(100, 13, 32, 28);
+	_txtFunding = new Text(100, 13, 140, 28);
+	_txtChange = new Text(72, 13, 240, 28);
+	_lstCountries = new TextList(260, 132, 32, 44);
+	_sortName = new ArrowButton(ARROW_NONE, 11, 8, 32, 28);
+	_sortFunding = new ArrowButton(ARROW_NONE, 11, 8, 140, 28);
+	_sortChange = new ArrowButton(ARROW_NONE, 11, 8, 240, 28);
 
 	// Set palette
 	setInterface("fundingWindow");

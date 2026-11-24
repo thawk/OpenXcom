@@ -63,7 +63,35 @@ namespace OpenXcom
 		_btnInfo->setColor(Palette::blockOffset(15)-1);
 		_btnInfo->setVisible(_game->getMod()->getShowPediaInfoButton());
 
-		_txtTitle->setColor(Palette::blockOffset(14)+15);
+		// zh-TW UX fix v2 (designer pass, second iteration):
+		//
+		// CRITICAL: X-COM Text rendering uses PaletteShift in Text.cpp:466 --
+		//     dest_palette_index = color + src * mul
+		// where src is the font glyph's internal pixel value 1..5 (anti-alias
+		// shade) and mul = 1 normal / 3 if setHighContrast(true). The "color"
+		// arg is therefore the RAMP BASE; the visible pixels land on
+		// [color+1 .. color+5], NOT on `color` itself. Choosing a base whose
+		// next 5 indexes are a coherent dark ramp is the actual goal.
+		//
+		// History:
+		//   * vanilla blockOffset(14)+15 = 239 -> pixels at 240..244, which in
+		//     PAL_UFOPAEDIA is a purple-to-near-black ramp. Decent contrast
+		//     on dark backgrounds, marginal on UP004.SPK sky.
+		//   * v1 blockOffset(15)+15 = 255 -> pixels wrap to idx 0..4 (black,
+		//     then pale cream #FCFCE4 etc.) -> invisible on white clouds.
+		//   * v2-first-attempt blockOffset(15)+9 = 249 -> pixels at 250..254,
+		//     which are magenta(250,251) + pale lime(252..254). Rendered as
+		//     bright yellow text -- still poor contrast.
+		//   * v2 final = blockOffset(14)+10 = 234 -> pixels at 235..239 =
+		//       PAL_UFOPAEDIA:   #7C5440 .. #503020  L=93.7..55.7 dark brown
+		//       PAL_BATTLEPEDIA: #484064 .. #201830  L=70.5..29.1 dark purple
+		//     Both are uniform dark ramps in same block 14, no wrapping.
+		//     mul=1 (no setHighContrast) keeps the ramp contiguous; setting
+		//     contrast=3 would scatter src*3 across multiple blocks (e.g.
+		//     into magenta 250,251) and break the look.
+		//   * Secondary keeps blockOffset(15)+4 = 244 = #1C1C20 deep neutral
+		//     so stat values remain distinguishable from labels.
+		_txtTitle->setColor(Palette::blockOffset(14)+10);
 		_txtTitle->setBig();
 		_txtTitle->setWordWrap(true);
 		_txtTitle->setText(tr(defs->getTitleForPage(_state->current_page)));
@@ -71,7 +99,7 @@ namespace OpenXcom
 		_txtInfo = new Text(defs->rect_text.width, defs->rect_text.height, defs->rect_text.x, defs->rect_text.y);
 		add(_txtInfo);
 
-		_txtInfo->setColor(Palette::blockOffset(14)+15);
+		_txtInfo->setColor(Palette::blockOffset(14)+10);
 		_txtInfo->setSecondaryColor(Palette::blockOffset(15) + 4);
 		_txtInfo->setWordWrap(true);
 		_txtInfo->setScrollable(true);
@@ -80,7 +108,7 @@ namespace OpenXcom
 		_txtStats = new Text(defs->rect_stats.width, defs->rect_stats.height, defs->rect_stats.x, defs->rect_stats.y);
 		add(_txtStats);
 
-		_txtStats->setColor(Palette::blockOffset(14)+15);
+		_txtStats->setColor(Palette::blockOffset(14)+10);
 		_txtStats->setSecondaryColor(Palette::blockOffset(15)+4);
 
 		std::ostringstream ss;

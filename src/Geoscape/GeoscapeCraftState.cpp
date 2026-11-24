@@ -73,20 +73,21 @@ GeoscapeCraftState::GeoscapeCraftState(Craft *craft, Globe *globe, Waypoint *way
 	_window = new Window(this, 240, 192, 4, 4, POPUP_BOTH);
 	_txtTitle = new Text(210, 17, 32, offset_upper + 20);
 	_txtStatus = new Text(210, 17, 32, offset_upper + 36);
-	_txtBase = new Text(210, 9, 32, offset_upper + 52);
-	_txtSpeed = new Text(210, 9, 32, offset_upper + 60);
-	_txtMaxSpeed = new Text(210, 9, 32, offset_upper + 68);
-	_txtAltitude = new Text(210, 9, 32, offset_upper + 76);
-	_txtSoldier = new Text(80, 9, 164, offset_upper + 60);
-	_txtHWP = new Text(80, 9, 164, offset_upper + 68);
-	_txtFuel = new Text(130, 9, 32, offset_upper + 84);
-	_txtDamage = new Text(80, 9, 164, offset_upper + 84);
-	_txtShield = new Text(80, 9, 164, offset_upper + 76);
+	// CHT: row h 9->11, pitch 8->10 for zh-TW CJK 12px glyphs.
+	_txtBase = new Text(210, 11, 32, offset_upper + 52);
+	_txtSpeed = new Text(210, 11, 32, offset_upper + 62);
+	_txtMaxSpeed = new Text(210, 11, 32, offset_upper + 72);
+	_txtAltitude = new Text(210, 11, 32, offset_upper + 82);
+	_txtSoldier = new Text(80, 11, 164, offset_upper + 62);
+	_txtHWP = new Text(80, 11, 164, offset_upper + 72);
+	_txtFuel = new Text(130, 11, 32, offset_upper + 92);
+	_txtDamage = new Text(80, 11, 164, offset_upper + 92);
+	_txtShield = new Text(80, 11, 164, offset_upper + 82);
 
 	for (int i = 0; i < _weaponNum; ++i)
 	{
-		_txtWeaponName[i] = new Text(130, 9, 32, offset_upper + 92 + 8*i);
-		_txtWeaponAmmo[i] = new Text(80, 9, 164, offset_upper + 92 + 8*i);
+		_txtWeaponName[i] = new Text(130, 11, 32, offset_upper + 92 + 10*i);
+		_txtWeaponAmmo[i] = new Text(80, 11, 164, offset_upper + 92 + 10*i);
 	}
 	_txtRedirect = new Text(230, 17, 13, offset_lower + 0);
 	_txtETA = new Text(230, 9, 13, offset_lower + 4);

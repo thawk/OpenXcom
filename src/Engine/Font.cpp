@@ -196,7 +196,12 @@ int Font::getWidth() const
  */
 int Font::getHeight() const
 {
-	return _images[0].height;
+	int h = 0;
+	for (std::vector<FontImage>::const_iterator i = _images.begin(); i != _images.end(); ++i)
+	{
+		if (i->height > h) h = i->height;
+	}
+	return h;
 }
 
 /**

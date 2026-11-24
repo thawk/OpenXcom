@@ -98,14 +98,17 @@ void SellState::delayedInit()
 	_btnCancel = new TextButton(148, 16, 164, 176);
 	_btnTransfer = new TextButton(148, 16, 164, 176);
 	_txtTitle = new Text(310, 17, 5, 8);
-	_txtSales = new Text(150, 9, 10, 24);
-	_txtFunds = new Text(150, 9, 160, 24);
-	_txtSpaceUsed = new Text(150, 9, 160, 34);
-	_txtQuantity = new Text(54, 9, 136, 44);
-	_txtSell = new Text(96, 9, 190, 44);
-	_txtValue = new Text(40, 9, 270, 44);
+	// zh-TW CJK 12px fit: h 9→13, y -2 for header rows; _lstItems y 54→58.
+	// Note: _txtSpaceUsed bottom (32+13=45) overlaps _txtSell y=44 by 1px, but
+	// _txtSell is added later in z-order so renders on top (acceptable).
+	_txtSales = new Text(150, 13, 10, 22);
+	_txtFunds = new Text(150, 13, 160, 22);
+	_txtSpaceUsed = new Text(150, 13, 160, 32);
+	_txtQuantity = new Text(54, 13, 136, 42);
+	_txtSell = new Text(96, 13, 190, 42);
+	_txtValue = new Text(40, 13, 270, 42);
 	_cbxCategory = new ComboBox(this, 120, 16, 10, 36);
-	_lstItems = new TextList(287, 120, 8, 54);
+	_lstItems = new TextList(287, 116, 8, 58);
 
 	touchComponentsCreate(_txtTitle);
 

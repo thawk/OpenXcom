@@ -25,6 +25,7 @@ namespace OpenXcom
 class TextButton;
 class Window;
 class Text;
+class Surface;
 
 // Utility class for enqueuing a state in the stack that goes to the main menu
 class GoToMainMenuState : public State
